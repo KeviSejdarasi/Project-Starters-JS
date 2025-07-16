@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+
+:root {
+  --bg: #111;
+  --text: #fff;
+  --highlight: #0ff;
+  --shadow: rgba(0, 0, 0, 0.6);
+}
+
+body.light {
+  --bg: #f0f0f0;
+  --text: #222;
+  --highlight: #0077ff;
+  --shadow: rgba(0, 0, 0, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  transition: background 0.4s, color 0.4s;
+}
+
+body {
+  font-family: 'Muli', sans-serif;
+  margin: 0;
+  height: 100vh;
+  background: var(--bg);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container {
+  display: flex;
+  width: 95vw;
+  gap: 10px;
+  z-index: 1;
+}
+
+.panel {
+  position: relative;
+  flex: 0.5;
+  height: 80vh;
+  border-radius: 30px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  filter: blur(6px);
+  transition: all 0.6s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.panel.active {
+  flex: 5;
+  filter: none;
+  box-shadow: 0 20px 40px var(--shadow);
+  transform: scale(1.02);
+}
+
+.panel h3 {
+  position: relative;
+  z-index: 2;
+  font-size: 26px;
+  margin: 20px;
+  color: var(--text);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.4s;
+  text-shadow: 0 2px 5px var(--shadow);
+}
+
+.panel.active h3 {
+  opacity: 1;
+}
+
+.hd-image {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.panel.active .hd-image {
+  opacity: 1;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: var(--text);
+  cursor: pointer;
+  z-index: 10;
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+  border-radius: 50%;
+  backdrop-filter: blur(5px);
+  transition: background 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .panel {
+    width: 100%;
+    height: 60vh;
+    flex: unset;
+    filter: none;
+  }
+
+  .panel.active {
+    height: 70vh;
+  }
+
+  .hd-image {
+    object-fit: cover;
+  }
+}

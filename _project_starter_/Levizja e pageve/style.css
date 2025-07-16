@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+:root {
+  --line-border-fill: #3498db;
+  --line-border-empty: #d3d3d3;
+  --active-color: #3498db;
+  --inactive-color: #ccc;
+  --bg: #f9f9f9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: 'Muli', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 40px;
+  max-width: 100%;
+  width: 350px;
+}
+
+.progress-container::before {
+  content: '';
+  background-color: var(--line-border-empty);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 6px;
+  width: 100%;
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.progress {
+  background: linear-gradient(90deg, var(--line-border-fill), #5dade2);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 6px;
+  width: 0%;
+  border-radius: 10px;
+  z-index: -1;
+  transition: width 0.4s ease-in-out;
+  box-shadow: 0 0 10px #3498db;
+}
+
+.circle {
+  background-color: #fff;
+  color: var(--inactive-color);
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--line-border-empty);
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+.circle.active {
+  border-color: var(--line-border-fill);
+  color: var(--line-border-fill);
+  background-color: #ecf6fd;
+  box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+  transform: scale(1.1);
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn {
+  background-color: var(--line-border-fill);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 10px 30px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: #217dbb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:disabled {
+  background-color: var(--line-border-empty);
+  cursor: not-allowed;
+}
